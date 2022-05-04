@@ -1,0 +1,191 @@
+
+{% extends 'base_index.html' %}
+{% load static  %}
+{% block content %}
+      {% if messages %}
+<script>
+alert("{{ messages }}")
+</script>
+{% endif %}
+    <!-- header-end -->
+    
+    <!-- bradcam_area  -->
+    <div class="bradcam_area bradcam_bg_1">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="bradcam_text">
+                        <h3>USERS REGISTRATION</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--/ bradcam_area  -->
+  <!-- ================ contact section start ================= -->
+  <section class="contact-section section_padding">
+    <div class="container">
+
+
+      <div class="row">
+        <div class="col-12">
+          <h2 class="contact-title">USERS REGISTRATION</h2>
+        </div>
+        <div class="col-lg-8">
+          <form   action="" method="post" ENCTYPE="multipart/form-data">
+              {% csrf_token %}
+            <div class="row">
+              <div class="col-12">
+
+              </div>
+              <div class="col-sm-6">
+                <div class="form-group">
+                  <input style="background: #0f2137" class="form-control" name="name" id="name" type="text"  placeholder = 'Enter name' required="">
+                </div>
+              </div>
+              <div class="col-sm-6">
+
+              </div>
+                <div class="col-sm-6">
+                <div class="form-group">
+                  <input style="background: #0f2137" class="form-control" name="phone"  type="number"  placeholder = 'Enter Phone' pattern="[6-9]{1}[0-9]{9}" required="" maxlength="10">
+                </div>
+              </div>
+
+              <div class="col-12">
+
+              </div>
+              <div class="col-sm-6">
+                <div class="form-group">
+                  <input style="background: #0f2137" class="form-control" name="Address" id="name" type="text"  placeholder = 'Enter Address' required="">
+                </div>
+              </div>
+              <div class="col-sm-6">
+
+              </div>
+                <div class="col-sm-6">
+                <div class="form-group">
+                  <input style="background: #0f2137" class="form-control" name="email" id="email" type="email"  placeholder = 'Enter email address' required="">
+                </div>
+
+              </div>
+
+
+                <div class="col-sm-6">
+
+              </div>
+
+              <div class="col-sm-6">
+                <div class="form-group">
+                  <input style="background: #0f2137" class="form-control" name="age"  type="text"  placeholder = 'Enter age' required="">
+                </div>
+
+              </div>
+
+                <div class="col-sm-6">
+
+              </div>
+                <div class="col-sm-6">
+                <div class="form-group">
+                  <input style="background: #0f2137" class="form-control" name="qualification"  type="text"  placeholder = 'Enter Qualification' required="">
+                </div>
+
+              </div>
+
+                <div class="col-sm-6">
+
+              </div>
+                 <div class="col-sm-6">
+                <div class="form-group">
+                  <input style="background: #0f2137" class="form-control" name="location"  type="text"  placeholder = 'Enter location' required="">
+                </div>
+
+              </div>
+
+                <div class="col-sm-6">
+
+              </div>
+                <div class="col-sm-6">
+                <div class="form-group">
+                  <input style="background: #0f2137" class="form-control" name="place"  type="text"  placeholder = 'Enter place' required="">
+                </div>
+
+              </div>
+
+                <div class="col-sm-6">
+
+              </div>
+                <div class="col-sm-6">
+                <div class="form-group">
+                  <input style="background: #0f2137" class="form-control" name="username"  type="text"  placeholder = 'Enter Username' required="">
+                </div>
+
+              </div>
+
+                <div class="col-sm-6">
+
+              </div>
+                <div class="col-sm-6">
+                <div class="form-group">
+                  <input style="background: #0f2137" class="form-control" name="password"  type="password"  placeholder = 'Enter password' pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters">
+                </div>
+
+              </div>
+
+                <div class="col-sm-6">
+
+              </div>
+
+                <div class="col-sm-6">
+                <div class="form-group">
+                     <h6>Upload Image</h6>
+                  <input style="background: #0f2137" class="form-control" name="image" id="name" type="file"  placeholder = 'image' required="">
+                </div>
+              </div>
+                 <div class="col-sm-6">
+
+              </div>
+
+
+                 <div class="col-sm-6">
+                <div class="form-group">
+                    <h6>Upload Cv</h6>
+                  <input style="background: #0f2137" class="form-control" name="cv_doc" id="name" type="file"  placeholder = 'image' required="">
+                </div>
+              </div>
+
+
+            </div>
+            <div class="form-group mt-3">
+              <button type="submit" class="button button-contactForm btn_4 boxed-btn">SUBMIT</button>
+            </div>
+          </form>
+        </div>
+        <div class="col-lg-4">
+          <div class="media contact-info">
+            <span class="contact-info__icon"><i class="ti-home"></i></span>
+            <div class="media-body">
+              <h3>Buttonwood, California.</h3>
+              <p>Rosemead, CA 91770</p>
+            </div>
+          </div>
+          <div class="media contact-info">
+            <span class="contact-info__icon"><i class="ti-tablet"></i></span>
+            <div class="media-body">
+              <h3>00 (440) 9865 562</h3>
+              <p>Mon to Fri 9am to 6pm</p>
+            </div>
+          </div>
+          <div class="media contact-info">
+            <span class="contact-info__icon"><i class="ti-email"></i></span>
+            <div class="media-body">
+              <h3>support@colorlib.com</h3>
+              <p>Send us your query anytime!</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- ================ contact section end ================= -->
+{% endblock %}

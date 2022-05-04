@@ -1,0 +1,84 @@
+
+{% extends 'user/user_base.html' %}
+{% load static  %}
+{% block content %}
+      {% if messages %}
+<script>
+alert("{{ messages }}")
+</script>
+{% endif %}
+    <!-- header-end -->
+
+    <!-- bradcam_area  -->
+    <div class="bradcam_area bradcam_bg_1">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="bradcam_text">
+                        <h3>GROUP DISCUSSION INVITATION</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--/ bradcam_area  -->
+  <!-- ================ contact section start ================= -->
+  <section class="contact-section section_padding">
+    <div class="container">
+
+
+
+  <div class="catagory_area">
+        <div style="padding-right: 200px;">
+            <div class="row cat_search">
+                <div class="col-lg-3 col-md-4">
+                </div>
+                <table class="table table-bordered table-striped table-hover" style="background-color: #002633;width: 1000px;">
+                                 <th class="success" style="color: white;">Company Photo</th>
+                                 <th class="success" style="color: white;">name</th>
+                                 <th class="success" style="color: white;">contact</th>
+                                 <th class="success" style="color: white;">Job Category</th>
+                                 <th class="success" style="color: white;">Job Title</th>
+                                 <th class="success" style="color: white;">date</th>
+{#                                  <th class="success" style="color: white;">Place</th>#}
+                                   <th class="success" style="color: white;">time</th>
+                                  <th class="success" style="color: white;">Link</th>
+                                  <th class="success" style="color: white;">GD status</th>
+{#                                   <th class="success" style="color: white;">Aptitude</th>#}
+{#                                   <th class="success" style="color: white;">Gd</th>#}
+{#                                  <th class="success" style="color: white;">One_To_One</th>#}
+{#                                  <th class="success" style="color: white;">final Status</th>#}
+
+              {% for i in result %}
+                                <tr style="background-color:white;width: 700px;">
+                                    <td><img  style="width: 100px;height: 100px;" src="{{ i.form.requirement.company.photo.url }}" class="img-responsive" alt="slide"></td>
+                                    <td>{{ i.form.requirement.company.user.first_name }}</td>
+                                    <td>{{ i.form.requirement.company.phone }}</td>
+                                    <td>{{ i.form.requirement.Categorys.Categorys }}</td>
+                                    <td>{{ i.form.requirement.title}}</td>
+                                    <td>{{ i.date}}</td>
+                                    <td>{{ i.time }}</td>
+
+{#                                    <td>{{ i.place }}</td>#}
+                                    <td><a style="color: #003eff" href="{{ i.link }}">{{ i.link }}</a></td>
+{#                                    <td>{{ i.form.status }}</td>#}
+{#                                    <td>{{ i.aptitude }}</td>#}
+                                    <td>{{ i.form.gd }}</td>
+{#                                    <td>{{ i.one_TO_one }}</td>#}
+{#                                    <td>{{ i.final_status }}</td>#}
+
+{#                                    <td><button style="background-color:lightslategray"><a href="give_questions?id={{ i.form.id}}" class=" btn btn-success" style="color:black">Give questions</a></button></td>#}
+{#                                    <td><button style="background-color:lightslategray"><a href="aptitude_pass?id={{ i.form.id}}" class=" btn btn-success" style="color:black">approve</a></button></td>#}
+{#                                    <td><button style="background-color:lightslategray"><a href="rejected_companies?id={{ i.user_id}}" class=" btn btn-danger" style="color:black">Reject</a></button></td>#}
+{#                                    <td><button style="background-color:lightslategray"><a href="aptitude_notpass?id={{ i.form.id}}" class=" btn btn-danger" style="color:black">Reject</a></button></td>#}
+                                </tr>
+              {% endfor %}
+
+
+
+                            </table>
+        </div>
+    </div>
+  </section>
+  <!-- ================ contact section end ================= -->
+{% endblock %}

@@ -1,0 +1,99 @@
+
+{% extends 'company/company_base.html' %}
+{% load static  %}
+{% block content %}
+      {% if messages %}
+<script>
+alert("{{ messages }}")
+</script>
+{% endif %}
+    <!-- slider_area_start -->
+    <div class="slider_area">
+        <div class="single_slider  d-flex align-items-center slider_bg_1">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-7 col-md-6">
+                        <div class="slider_text">
+                            <h5 class="wow fadeInLeft" data-wow-duration="1s" data-wow-delay=".2s">4536+ Jobs listed</h5>
+                            <h3 class="wow fadeInLeft" data-wow-duration="1s" data-wow-delay=".3s">Company panel</h3>
+                            <p class="wow fadeInLeft" data-wow-duration="1s" data-wow-delay=".4s">We provide online instant cash loans with quick approval that suit your term length</p>
+                            <div class="sldier_btn wow fadeInLeft" data-wow-duration="1s" data-wow-delay=".5s">
+{#                                <a href="#" class="boxed-btn3">Upload your Resume</a>#}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="ilstration_img wow fadeInRight d-none d-lg-block text-right" data-wow-duration="1s" data-wow-delay=".2s">
+            <img src="{% static 'assets/img/banner/illustration.png' %}" alt="">
+        </div>
+    </div>
+    <!-- slider_area_end -->
+
+    <!-- catagory_area -->
+
+
+     <div class="catagory_area">
+        <div style="padding-left:100px;">
+            <div class="row cat_search">
+                <div class="col-lg-3 col-md-4">
+                </div>
+                <table class="table table-bordered table-striped table-hover" style="background-color: #002633;width: 1000px;">
+                                 <th class="success" style="color: white;">user Photo</th>
+                                 <th class="success" style="color: white;">name</th>
+                                 <th class="success" style="color: white;">contact</th>
+                                 <th class="success" style="color: white;">Job Category</th>
+                                 <th class="success" style="color: white;">Job Title</th>
+                                 <th class="success" style="color: white;">Experience</th>
+{#                                  <th class="success" style="color: white;">Place</th>#}
+                                   <th class="success" style="color: white;">vacancies</th>
+                                  <th class="success" style="color: white;">Job Description</th>
+{#                                  <th class="success" style="color: white;">GD status</th>#}
+{#                                   <th class="success" style="color: white;">Aptitude</th>#}
+{#                                   <th class="success" style="color: white;">Gd</th>#}
+                                  <th class="success" style="color: white;">One_To_One</th>
+{#                                  <th class="success" style="color: white;">final Status</th>#}
+                                    <th class="success" style="color: white;">Give Invitation link</th>
+          <th class="success" style="color: white;">approve</th>
+                 <th class="success" style="color: white;">Reject</th>
+              {% for i in result %}
+                                <tr style="background-color:white;width: 700px;">
+                                   <td><img  style="width: 100px;height: 100px;" src="{{ i.user.photo.url }}" class="img-responsive" alt="slide"></td>
+                                     <td>{{ i.user.user.first_name }}</td>
+                                    <td>{{ i.user.phone }}</td>
+                                    <td>{{ i.requirement.Categorys.Categorys }}</td>
+                                    <td>{{ i.requirement.title}}</td>
+                                    <td>{{ i.requirement.experience}}</td>
+                                    <td>{{ i.requirement.vacancies }}</td>
+
+{#                                    <td>{{ i.place }}</td>#}
+                                    <td>{{ i.requirement.description }}</td>
+{#                                    <td>{{ i.gd }}</td>#}
+{#                                    <td>{{ i.aptitude }}</td>#}
+{#                                    <td>{{ i.gd }}</td>#}
+                                    <td>{{ i.one_TO_one }}</td>
+{#                                    <td>{{ i.final_status }}<//td>#}
+
+                                    <td><button style="background-color:lightslategray"><a href="onetoone_link?id={{ i.id}}" class=" btn btn-success" style="color:black">Give Invitation link</a></button></td>
+                                    <td><button style="background-color:lightslategray"><a href="onetoone_pass?id={{ i.id}}" class=" btn btn-success" style="color:black">approve</a></button></td>
+{#                                    <td><button style="background-color:lightslategray"><a href="rejected_companies?id={{ i.user_id}}" class=" btn btn-danger" style="color:black">Reject</a></button></td>#}
+                                    <td><button style="background-color:lightslategray"><a href="onetoone_notpass?id={{ i.id}}" class=" btn btn-danger" style="color:black">Reject</a></button></td>
+                                </tr>
+   {% endfor %}
+
+
+
+                            </table>
+
+
+        </div>
+{#        <button style="background-color:lightslategray;padding-left: 900px;"><a href="providelink?id={{id}}" class=" btn btn-success" style="color:black">Provide google meet link</a></button>#}
+
+    </div>
+
+
+
+    <!-- /testimonial_area  -->
+{% endblock %}
+

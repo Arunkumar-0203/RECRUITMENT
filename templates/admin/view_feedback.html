@@ -1,0 +1,65 @@
+
+{% extends 'admin/admin_base.html' %}
+{% load static  %}
+{% block content %}
+      {% if messages %}
+<script>
+alert("{{ messages }}")
+</script>
+{% endif %}
+    <!-- slider_area_start -->
+    <div class="slider_area">
+        <div class="single_slider  d-flex align-items-center slider_bg_1">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-7 col-md-6">
+                        <div class="slider_text">
+                            <h5 class="wow fadeInLeft" data-wow-duration="1s" data-wow-delay=".2s">4536+ Jobs listed</h5>
+                            <h3 class="wow fadeInLeft" data-wow-duration="1s" data-wow-delay=".3s">Admin panel</h3>
+                            <p class="wow fadeInLeft" data-wow-duration="1s" data-wow-delay=".4s">We provide online instant cash loans with quick approval that suit your term length</p>
+                            <div class="sldier_btn wow fadeInLeft" data-wow-duration="1s" data-wow-delay=".5s">
+{#                                <a href="#" class="boxed-btn3">Upload your Resume</a>#}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="ilstration_img wow fadeInRight d-none d-lg-block text-right" data-wow-duration="1s" data-wow-delay=".2s">
+            <img src="{% static 'assets/img/banner/illustration.png' %}" alt="">
+        </div>
+    </div>
+    <!-- slider_area_end -->
+
+    <!-- catagory_area -->
+
+
+     <div class="catagory_area">
+        <div class="container">
+            <div class="row cat_search">
+                <div class="col-lg-3 col-md-4">
+                </div>
+                <table class="table table-bordered table-striped table-hover" style="background-color: #002633;width: 1000px;">
+                                 <th class="success" style="color: white;">No</th>
+                                 <th class="success" style="color: white;">Name</th>
+                                 <th class="success" style="color: white;">Feedback</th>
+                                 <th class="success" style="color: white;">Delete</th>
+
+              {% for i in feedback %}
+                                <tr style="background-color:white;width: 700px;">
+                                    <td>{{ forloop.counter }}</td>
+                                    <td>{{ i.USER.first_name }}</td>
+                                    <td>{{ i.feedback }}</td>
+                                    <td><button style="background-color:lightslategray"><a href="delete_feedback?id={{ i.id}}" class=" btn btn-success" style="color:black">delete</a></button></td>
+                                </tr>
+              {% endfor %}
+
+
+
+                            </table>
+        </div>
+    </div>
+
+    <!-- /testimonial_area  -->
+{% endblock %}
+
