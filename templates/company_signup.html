@@ -89,6 +89,7 @@ alert("{{ messages }}")
               <div class="col-sm-6">
 
               </div>
+
                 <div class="col-sm-6">
                 <div class="form-group">
                   <input style="background: #0f2137;color: white" class="form-control" name="company_email" id="email" type="email"  placeholder = 'Enter email address'>
@@ -97,6 +98,35 @@ alert("{{ messages }}")
                 <div class="col-sm-6">
 
               </div>
+                 <div class="col-sm-6">
+                <div class="form-group">
+                   <div class="col-sm-6">
+                <div >
+                     <label  for="lname">Select district</label>
+
+     <select style="width:500px;height:40px;border-radius: 8px;background: #0f2137 " id="cars" name="location">
+  {% for i in district %}
+
+       <option value="{{ i.DISTRICT }}">{{ i.DISTRICT }}</option>
+
+
+ {% endfor %}
+   </select>
+                </div>
+              </div>
+                <div class="col-sm-6">
+
+              </div>
+                    <br>
+                       <br>
+                       <br>
+
+                </div>
+              </div>
+                <div class="col-sm-6">
+
+              </div>
+
                 <div class="col-sm-6">
                 <div class="form-group">
                   <input style="background: #0f2137;color: white" class="form-control" name="company_place" id="" type="text"  placeholder = 'Enter place'>
@@ -105,15 +135,15 @@ alert("{{ messages }}")
                  <div class="col-sm-6">
 
               </div>
-                <div class="col-sm-6">
-                <div class="form-group">
-
-                  <input style="background: #0f2137;color: white" class="form-control" name="company_location" id="" type="text"  placeholder = 'Enter Location'>
-                </div>
-              </div>
-                <div class="col-sm-6">
-
-              </div>
+{#                <div class="col-sm-6">#}
+{#                <div class="form-group">#}
+{##}
+{#                  <input style="background: #0f2137;color: white" class="form-control" name="company_location" id="" type="text"  placeholder = 'Enter Location'>#}
+{#                </div>#}
+{#              </div>#}
+{#                <div class="col-sm-6">#}
+{##}
+{#              </div>#}
                  <div class="col-sm-6">
                 <div class="form-group">
 
@@ -126,7 +156,7 @@ alert("{{ messages }}")
                 <div class="col-sm-6">
                 <div class="form-group">
 
-                  <input style="background: #0f2137;color: white" class="form-control" name="password" id="" type="password"  placeholder = 'Enter password'>
+                  <input style="background: #0f2137;color: white" class="form-control" name="password" id="" type="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters"  placeholder = 'Enter password'>
                 </div>
               </div>
                 <div class="col-sm-6">
@@ -155,29 +185,29 @@ alert("{{ messages }}")
             </div>
           </form>
         </div>
-        <div class="col-lg-4">
-          <div class="media contact-info">
-            <span class="contact-info__icon"><i class="ti-home"></i></span>
-            <div class="media-body">
-              <h3>Buttonwood, California.</h3>
-              <p>Rosemead, CA 91770</p>
-            </div>
-          </div>
-          <div class="media contact-info">
-            <span class="contact-info__icon"><i class="ti-tablet"></i></span>
-            <div class="media-body">
-              <h3>00 (440) 9865 562</h3>
-              <p>Mon to Fri 9am to 6pm</p>
-            </div>
-          </div>
-          <div class="media contact-info">
-            <span class="contact-info__icon"><i class="ti-email"></i></span>
-            <div class="media-body">
-              <h3>support@colorlib.com</h3>
-              <p>Send us your query anytime!</p>
-            </div>
-          </div>
-        </div>
+{#        <div class="col-lg-4">#}
+{#          <div class="media contact-info">#}
+{#            <span class="contact-info__icon"><i class="ti-home"></i></span>#}
+{#            <div class="media-body">#}
+{#              <h3>Buttonwood, California.</h3>#}
+{#              <p>Rosemead, CA 91770</p>#}
+{#            </div>#}
+{#          </div>#}
+{#          <div class="media contact-info">#}
+{#            <span class="contact-info__icon"><i class="ti-tablet"></i></span>#}
+{#            <div class="media-body">#}
+{#              <h3>00 (440) 9865 562</h3>#}
+{#              <p>Mon to Fri 9am to 6pm</p>#}
+{#            </div>#}
+{#          </div>#}
+{#          <div class="media contact-info">#}
+{#            <span class="contact-info__icon"><i class="ti-email"></i></span>#}
+{#            <div class="media-body">#}
+{#              <h3>support@colorlib.com</h3>#}
+{#              <p>Send us your query anytime!</p>#}
+{#            </div>#}
+{#          </div>#}
+{#        </div>#}
       </div>
     </div>
   </section>

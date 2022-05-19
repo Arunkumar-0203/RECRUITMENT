@@ -5,7 +5,7 @@ from django.conf import settings
 from django.shortcuts import render, redirect
 from django.views.generic import TemplateView, View
 from RECRUITMENT_APP.models import Requirement, postJob, Company, category, Feedback, user, application, \
-    Aptitude_questions, group_discussion, one_to_one, offerletter
+    Aptitude_questions, group_discussion, one_to_one, offerletter, Complaint
 
 
 class IndexView(TemplateView):
@@ -55,16 +55,23 @@ class job_posted_list(TemplateView):
 
 class job_posted_list_search(TemplateView):
     template_name = 'company/view_jobpost.html'
+
     def get_context_data(self, **kwargs):
         context = super(job_posted_list_search,self).get_context_data(**kwargs)
         id =self.request.GET['categ_id']
-        requirement = Requirement.objects.filter(Categorys_id=id)
-        if Requirement.objects.filter(Categorys_id=id):
-            context['requirement'] =requirement
-            return context
-        else:
-            context['messages'] ='No job post'
-            return context
+        s_id=self.request.user.id
+        comp_id = Company.objects.get(user_id=s_id)
+        try:
+            if Requirement.objects.get(Categorys_id=id,company_id=comp_id):
+                requirement = Requirement.objects.filter(Categorys_id=id,company_id=comp_id)
+                context['requirement'] =requirement
+                return context
+            else:
+                context['messages'] ='No job post'
+                return context
+        except:
+             context['messages'] ='No job post'
+             return context
 
 class feedback(TemplateView):
     template_name = 'company/feedback.html'
@@ -81,10 +88,34 @@ class feedback(TemplateView):
         feedback_db.save()
         return redirect(request.META['HTTP_REFERER'])
 
+
+class comp_complaint(TemplateView):
+    template_name = 'company/complaints.html'
+    def get_context_data(self, **kwargs):
+        context = super(comp_complaint,self).get_context_data(**kwargs)
+        Complaints=Complaint.objects.filter(USER_id=self.request.user.id)
+        context['feedback'] =Complaints
+        return context
+    def post(self, request,*args,**kwargs):
+        Complaints=request.POST['Complaint']
+        Complaints_db = Complaint()
+        Complaints_db .USER_id=self.request.user.id
+        Complaints_db .complaint = Complaints
+        Complaints_db .save()
+        return redirect(request.META['HTTP_REFERER'])
+
+
+
 class delete_feedback(View):
     def dispatch(self, request, *args, **kwargs):
         id =self.request.GET['id']
         Feedback.objects.get(id=id).delete()
+        return redirect(request.META['HTTP_REFERER'])
+
+class delete_complaint(View):
+    def dispatch(self, request, *args, **kwargs):
+        id =self.request.GET['id']
+        Complaint.objects.get(id=id).delete()
         return redirect(request.META['HTTP_REFERER'])
 
 class view_candidate(TemplateView):
@@ -293,7 +324,7 @@ class providelink(TemplateView):
                  )
                 email.fail_silently = False
                 email.send()
-                return redirect(request.META['HTTP_REFERER'])
+        return redirect(request.META['HTTP_REFERER'])
 
 
 class GD_pass(View):
@@ -361,7 +392,7 @@ class onetoone_link(TemplateView):
                  )
                 email.fail_silently = False
                 email.send()
-                return redirect(request.META['HTTP_REFERER'])
+        return redirect(request.META['HTTP_REFERER'])
 
 class onetoone_pass(View):
     def dispatch(self, request, *args, **kwargs):

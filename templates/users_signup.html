@@ -97,7 +97,21 @@ alert("{{ messages }}")
               </div>
                  <div class="col-sm-6">
                 <div class="form-group">
-                  <input style="background: #0f2137" class="form-control" name="location"  type="text"  placeholder = 'Enter location' required="">
+
+                   <label  for="lname">Select district</label>
+                    <br>
+
+   <select style="width:500px;height:40px;border-radius: 8px;background: #0f2137 " id="cars" name="location">
+  {% for i in district %}
+
+       <option value="{{ i.DISTRICT }}">{{ i.DISTRICT }}</option>
+
+
+ {% endfor %}
+   </select>
+                    <br>
+                    <br>
+
                 </div>
 
               </div>
@@ -161,30 +175,30 @@ alert("{{ messages }}")
             </div>
           </form>
         </div>
-        <div class="col-lg-4">
-          <div class="media contact-info">
-            <span class="contact-info__icon"><i class="ti-home"></i></span>
-            <div class="media-body">
-              <h3>Buttonwood, California.</h3>
-              <p>Rosemead, CA 91770</p>
-            </div>
-          </div>
-          <div class="media contact-info">
-            <span class="contact-info__icon"><i class="ti-tablet"></i></span>
-            <div class="media-body">
-              <h3>00 (440) 9865 562</h3>
-              <p>Mon to Fri 9am to 6pm</p>
-            </div>
-          </div>
-          <div class="media contact-info">
-            <span class="contact-info__icon"><i class="ti-email"></i></span>
-            <div class="media-body">
-              <h3>support@colorlib.com</h3>
-              <p>Send us your query anytime!</p>
-            </div>
-          </div>
-        </div>
-      </div>
+{#        <div class="col-lg-4">#}
+{#          <div class="media contact-info">#}
+{#            <span class="contact-info__icon"><i class="ti-home"></i></span>#}
+{#            <div class="media-body">#}
+{#              <h3>Buttonwood, California.</h3>#}
+{#              <p>Rosemead, CA 91770</p>#}
+{#            </div>#}
+{#          </div>#}
+{#          <div class="media contact-info">#}
+{#            <span class="contact-info__icon"><i class="ti-tablet"></i></span>#}
+{#            <div class="media-body">#}
+{#              <h3>00 (440) 9865 562</h3>#}
+{#              <p>Mon to Fri 9am to 6pm</p>#}
+{#            </div>#}
+{#          </div>#}
+{#          <div class="media contact-info">#}
+{#            <span class="contact-info__icon"><i class="ti-email"></i></span>#}
+{#            <div class="media-body">#}
+{#              <h3>support@colorlib.com</h3>#}
+{#              <p>Send us your query anytime!</p>#}
+{#            </div>#}
+{#          </div>#}
+{#        </div>#}
+{#      </div>#}
     </div>
   </section>
   <!-- ================ contact section end ================= -->

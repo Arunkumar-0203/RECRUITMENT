@@ -4,7 +4,8 @@ from RECRUITMENT_APP.admin_views import IndexView, view_candidates, view_accepte
    accepted_candidates, rejected_candidates, accepted_candidates_reject, rejected_candidates_accepted, view_companies, \
    view_accepted_companies, view_rejected_companies, accepted_companies, rejected_companies, accepted_companies_reject, \
     rejected_companies_accepted, add_requirement, delete_requirement, view_requirement, view_feedback, add_category, \
-    delte_category, delete_feedback, application_satatus_view
+    delte_category, delete_feedback, application_satatus_view, view_complaint, add_state, add_district, delete_complaint, \
+   delte_district
 
 urlpatterns =[
    path('',IndexView.as_view()),
@@ -34,7 +35,18 @@ urlpatterns =[
    path('delte_category',delte_category.as_view()),
 
    path('delete_feedback',delete_feedback.as_view()),
-   path('application_satatus_view',application_satatus_view.as_view())
+   path('application_satatus_view',application_satatus_view.as_view()),
+
+
+   path('view_complaint',view_complaint.as_view()),
+
+
+   path('add_district',add_district.as_view()),
+   path('add_state',add_state.as_view()),
+
+   path('delete_complaint',delete_complaint.as_view()),
+   path('delte_district',delte_district.as_view())
+
 
 ]
 def urls():

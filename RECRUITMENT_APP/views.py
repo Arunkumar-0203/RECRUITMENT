@@ -5,7 +5,7 @@ from django.shortcuts import render, redirect
 # Create your views here.
 from django.views.generic import TemplateView
 
-from RECRUITMENT_APP.models import UserType, Company, user
+from RECRUITMENT_APP.models import UserType, Company, user, Requirement, category, guest, district
 
 
 class home_page(TemplateView):
@@ -26,8 +26,8 @@ class loginview(TemplateView):
                     return redirect('/user')
                 elif UserType.objects.get(user_id=users.id).type == "company":
                     return redirect('/company')
-                # else:
-                #     return redirect('/employee')
+                else:
+                    return redirect('/Guest')
             else:
                 return render(request,'login.html',{'message':" User Account Not Authenticated"})
         else:
@@ -42,6 +42,12 @@ class registration(TemplateView):
 
 class user_signup(TemplateView):
     template_name = 'users_signup.html'
+    def get_context_data(self, **kwargs):
+        context = super(user_signup,self).get_context_data(**kwargs)
+        ds=district.objects.all()
+        context['district'] =ds
+        return context
+
     def post(self, request,*args,**kwargs):
         fullname = request.POST['name']
         print(fullname)
@@ -102,8 +108,63 @@ class user_signup(TemplateView):
              return render(request,'registration.html',{'messages':messages})
 
 
+class guest_signup(TemplateView):
+    template_name = 'guest_signup.html'
+    def get_context_data(self, **kwargs):
+        context = super(guest_signup,self).get_context_data(**kwargs)
+        ds=district.objects.all()
+        context['district'] =ds
+        return context
+    def post(self, request,*args,**kwargs):
+        fullname = request.POST['name']
+        print(fullname)
+        phone = request.POST['phone']
+        print(phone)
+        address = request.POST['Address']
+        print(address)
+        email = request.POST['email']
+        print(email)
+        place = request.POST['place']
+        print(place)
+        location = request.POST['location']
+        username = request.POST['username']
+        print(username)
+        password = request.POST['password']
+        print(fullname)
+        try:
+             USERS = User.objects.create_user(username=username,password=password,first_name=fullname,email=email,last_name=1)
+             USERS.save()
+             users = guest()
+             users.name=fullname
+             users.phone =phone
+             users.address =address
+             users.location = location
+             users.email = email
+             users.place =place
+             users.status = 'registered'
+             users.user_id = USERS.id
+             users.username = username
+             users.password =password
+             usertype = UserType()
+             usertype.user = USERS
+             usertype.type = "Guest"
+             usertype.save()
+             users.save()
+             return redirect('login')
+        except:
+             messages = "Register Successfully"
+             return render(request,'registration.html',{'messages':messages})
+
+
+
+
 class company_signup(TemplateView):
     template_name = 'company_signup.html'
+    def get_context_data(self, **kwargs):
+        context = super(company_signup,self).get_context_data(**kwargs)
+        ds=district.objects.all()
+        context['district'] =ds
+        return context
     def post(self, request,*args,**kwargs):
         fullname = request.POST['company_name']
         print(fullname)
@@ -151,3 +212,66 @@ class company_signup(TemplateView):
         except:
              messages = "Register Successfully"
              return render(request,'registration.html',{'messages':messages})
+
+class view_jobs(TemplateView):
+    template_name = 'view_jobpost.html'
+    def get_context_data(self, **kwargs):
+        context = super(view_jobs,self).get_context_data(**kwargs)
+        id =self.request.GET['categ_id']
+        requirement = Requirement.objects.filter(Categorys_id=id)
+        if Requirement.objects.filter(Categorys_id=id):
+            context['requirement'] =requirement
+            return context
+        else:
+            context['messages'] ='No job post'
+            return context
+
+class view_company(TemplateView):
+    template_name = 'view_companies.html'
+    def get_context_data(self, **kwargs):
+        context = super(view_company,self).get_context_data(**kwargs)
+        company =Company.objects.all()
+        context['company']=company
+        return context
+
+
+class view_vacancy_category(TemplateView):
+    template_name = 'view_vacancy_category.html'
+    def get_context_data(self, **kwargs):
+        context = super(view_vacancy_category,self).get_context_data(**kwargs)
+        id =self.request.GET['id']
+        Category = category.objects.all()
+        context['Category'] =Category
+        context['id'] =id
+        return context
+
+class user_job_posted_list_search(TemplateView):
+    template_name = 'view_jobpost.html'
+    def get_context_data(self, **kwargs):
+        context = super(user_job_posted_list_search,self).get_context_data(**kwargs)
+        id =self.request.GET['categ_id']
+        s_id=self.request.GET['id']
+        comp_id = Company.objects.get(id=s_id)
+        try:
+            if Requirement.objects.get(Categorys_id=id,company_id=comp_id):
+                requirement = Requirement.objects.filter(Categorys_id=id,company_id=comp_id)
+                context['requirement'] =requirement
+                return context
+            else:
+                context['messages'] ='No job post'
+                return context
+        except:
+             context['messages'] ='No job post'
+             return context
+
+class job_details(TemplateView):
+    template_name = 'job_details2.html'
+    def get_context_data(self, **kwargs):
+        context = super(job_details,self).get_context_data(**kwargs)
+        id= self.request.GET['id']
+        requirement = Requirement.objects.filter(id=id)
+        context['requirement'] =requirement
+        return context
+
+class about(TemplateView):
+    template_name = 'about.html'

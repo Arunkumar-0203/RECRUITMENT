@@ -2,7 +2,7 @@ from django.contrib.auth.models import User
 from django.shortcuts import redirect
 from django.views.generic import TemplateView, View
 
-from RECRUITMENT_APP.models import user, Company, Requirement, category, Feedback, application
+from RECRUITMENT_APP.models import user, Company, Requirement, category, Feedback, application, Complaint, district
 
 
 class IndexView(TemplateView):
@@ -203,11 +203,27 @@ class view_feedback(TemplateView):
         FFEDBACK=Feedback.objects.all()
         context['feedback'] =FFEDBACK
         return context
+    def post(self,request,*args,**kwargs):
+        id=request.POST['id']
+        response =request.POST['response']
+        FFEDBACK=Feedback.objects.get(id=id)
+        FFEDBACK.reply =response
+        FFEDBACK.save()
+        return redirect(request.META['HTTP_REFERER'])
+
+
 
 class delete_feedback(View):
     def dispatch(self, request, *args, **kwargs):
         id =self.request.GET['id']
         Feedback.objects.get(id=id).delete()
+        return redirect(request.META['HTTP_REFERER'])
+
+
+class delete_complaint(View):
+    def dispatch(self, request, *args, **kwargs):
+        id =self.request.GET['id']
+        Complaint.objects.get(id=id).delete()
         return redirect(request.META['HTTP_REFERER'])
 
 class add_category(TemplateView):
@@ -239,3 +255,36 @@ class application_satatus_view(TemplateView):
         result =application.objects.all()
         context['result'] =result
         return context
+
+class view_complaint(TemplateView):
+    template_name = 'admin/view_complaint.html'
+    def get_context_data(self, **kwargs):
+        context = super(view_complaint,self).get_context_data(**kwargs)
+        Complaints=Complaint.objects.all()
+        context['feedback'] =Complaints
+        return context
+
+
+class add_state(TemplateView):
+    template_name = 'admin/add_state.html'
+
+class add_district(TemplateView):
+    template_name = 'admin/add_district.html'
+    def get_context_data(self, **kwargs):
+        context = super(add_district,self).get_context_data(**kwargs)
+        ds=district.objects.all()
+        context['district'] =ds
+        return context
+    def post(self,request,*args,**kwargs):
+        dict =request.POST['district']
+        d=district()
+        d.DISTRICT=dict
+        d.save()
+        return redirect(request.META['HTTP_REFERER'])
+
+
+class delte_district(View):
+    def dispatch(self, request, *args, **kwargs):
+        id = self.request.GET['id']
+        district.objects.get(id=id).delete()
+        return redirect(request.META['HTTP_REFERER'])

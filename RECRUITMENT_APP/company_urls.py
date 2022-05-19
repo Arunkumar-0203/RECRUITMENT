@@ -4,7 +4,8 @@ from RECRUITMENT_APP.company_views import IndexView, view_requirement, post_jobs
     job_posted_list_search, feedback, delete_feedback, view_candidate, view_candidates, accepted_candidates_reject, \
     view_rejected_candidates, rejected_candidates_accepted, application_status, applicationlist, approveapplication, \
     aptitude, give_questions, aptitude_notpass, aptitude_pass, group_dicussion, providelink, GD_pass, GD_notpass, \
-    onetoone, onetoone_link, onetoone_pass, onetoone_notpass, send_offer_latter, send_offer_latter_list
+    onetoone, onetoone_link, onetoone_pass, onetoone_notpass, send_offer_latter, send_offer_latter_list, comp_complaint, \
+    delete_complaint
 
 urlpatterns = [
        path('',IndexView.as_view()),
@@ -13,6 +14,8 @@ urlpatterns = [
        path('job_posted_list',job_posted_list.as_view()),
        path('job_posted_list_search',job_posted_list_search.as_view()),
        path('comp_feedback',feedback.as_view()),
+       path('comp_complaint',comp_complaint.as_view()),
+       path('delete_complaint',delete_complaint.as_view()),
        path('delete_feedback',delete_feedback.as_view()),
        path('view_candidate',view_candidate.as_view()),
        path('view_candidates',view_candidates.as_view()),

@@ -2,7 +2,7 @@ from django.shortcuts import redirect, render
 from django.views.generic import TemplateView, View
 
 from RECRUITMENT_APP.models import user, Company, category, Requirement, application, Aptitude_questions, \
-    group_discussion, one_to_one, offerletter, Feedback
+    group_discussion, one_to_one, offerletter, Feedback, Complaint
 
 
 class IndexView(TemplateView):
@@ -53,16 +53,20 @@ class view_companies(TemplateView):
     template_name = 'user/view_companies.html'
     def get_context_data(self, **kwargs):
         context = super(view_companies,self).get_context_data(**kwargs)
+
         company =Company.objects.all()
         context['company']=company
+
         return context
 
 class view_vacancy_category(TemplateView):
     template_name = 'user/view_vacancy_category.html'
     def get_context_data(self, **kwargs):
         context = super(view_vacancy_category,self).get_context_data(**kwargs)
+        # id =self.request.GET['id']
         Category = category.objects.all()
         context['Category'] =Category
+        # context['id'] =id
         return context
 
 class user_job_posted_list_search(TemplateView):
@@ -223,4 +227,25 @@ class delete_feedback(View):
     def dispatch(self, request, *args, **kwargs):
         id =self.request.GET['id']
         Feedback.objects.get(id=id).delete()
+        return redirect(request.META['HTTP_REFERER'])
+
+class comp_complaint(TemplateView):
+    template_name = 'user/complaints.html'
+    def get_context_data(self, **kwargs):
+        context = super(comp_complaint,self).get_context_data(**kwargs)
+        Complaints=Complaint.objects.filter(USER_id=self.request.user.id)
+        context['feedback'] =Complaints
+        return context
+    def post(self, request,*args,**kwargs):
+        Complaints=request.POST['Complaint']
+        Complaints_db = Complaint()
+        Complaints_db .USER_id=self.request.user.id
+        Complaints_db .complaint = Complaints
+        Complaints_db .save()
+        return redirect(request.META['HTTP_REFERER'])
+
+class delete_complaint(View):
+    def dispatch(self, request, *args, **kwargs):
+        id =self.request.GET['id']
+        Complaint.objects.get(id=id).delete()
         return redirect(request.META['HTTP_REFERER'])

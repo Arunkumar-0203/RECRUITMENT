@@ -1,5 +1,5 @@
 
-{% extends 'user/user_base.html' %}
+{% extends 'base_index.html' %}
 {% load static  %}
 {% block content %}
       {% if messages %}
@@ -15,7 +15,7 @@ alert("{{ messages }}")
                     <div class="col-lg-7 col-md-6">
                         <div class="slider_text">
                             <h5 class="wow fadeInLeft" data-wow-duration="1s" data-wow-delay=".2s">4536+ Jobs listed</h5>
-                            <h3 class="wow fadeInLeft" data-wow-duration="1s" data-wow-delay=".3s">User panel</h3>
+{#                            <h3 class="wow fadeInLeft" data-wow-duration="1s" data-wow-delay=".3s">User panel</h3>#}
                             <p class="wow fadeInLeft" data-wow-duration="1s" data-wow-delay=".4s">We provide online instant cash loans with quick approval that suit your term length</p>
                             <div class="sldier_btn wow fadeInLeft" data-wow-duration="1s" data-wow-delay=".5s">
 {#                                <a href="#" class="boxed-btn3">Upload your Resume</a>#}
@@ -100,7 +100,7 @@ alert("{{ messages }}")
                 {% for i in Category %}
                 <div class="col-lg-4 col-xl-3 col-md-6">
                     <div class="single_catagory">
-                        <a href="user_job_posted_list_search?categ_id={{ i.id }}"><h4>{{ i.Categorys }}</h4></a>
+                        <a href="user_job_posted_list_search?categ_id={{ i.id }}&&id={{ id }}"><h4>{{ i.Categorys }}</h4></a>
                         <p> <span>**</span> Available position</p>
                     </div>
                 </div>

@@ -36,6 +36,18 @@ class user(models.Model):
     password = models.CharField(max_length=100,null=True)
     status = models.CharField(max_length=100,null=True)
 
+class guest(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    name = models.CharField(max_length=100,null=True)
+    phone = models.CharField(max_length=100,null=True)
+    email = models.CharField(max_length=100,null=True)
+    address = models.CharField(max_length=100,null=True)
+    place = models.CharField(max_length=100,null=True)
+    location = models.CharField(max_length=100,null=True)
+    username = models.CharField(max_length=100,null=True)
+    password = models.CharField(max_length=100,null=True)
+    status = models.CharField(max_length=100,null=True)
+
 
 class category (models.Model):
     Categorys = models.CharField(max_length=100,null=True)
@@ -70,6 +82,12 @@ class application(models.Model):
 class Feedback(models.Model):
     USER = models.ForeignKey(User, on_delete=models.CASCADE,null=True)
     feedback =  models.CharField(max_length=100,null=True)
+    reply = models.CharField(max_length=100,null=True)
+
+class Complaint(models.Model):
+    USER = models.ForeignKey(User, on_delete=models.CASCADE,null=True)
+    complaint =  models.CharField(max_length=100,null=True)
+    reply = models.CharField(max_length=100,null=True)
 
 class Aptitude_questions(models.Model):
     form = models.ForeignKey(application, on_delete=models.CASCADE,null=True)
@@ -111,3 +129,8 @@ class offerletter(models.Model):
     letter = models.ImageField(upload_to='images/', null=True)
     status = models.CharField(max_length=400,default='test')
 
+class state(models.Model):
+    STATE =models.CharField(max_length=400,null=True)
+
+class district(models.Model):
+    DISTRICT =models.CharField(max_length=400,null=True)
